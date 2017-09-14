@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Let's Checkout</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-card style="margin: 0px; border: none; width: 100%;">
+        <img src="./assets/images/logo.jpg" style = "width:70%; margin: auto; padding:20px;" />
+    </ion-card>
+
+    <ion-list>
+      <ion-item>
+          <button ion-button block large color = "light" (click)="openPage('login')">Login</button>
+      </ion-item>
+
+      <ion-item>
+          <button ion-button block large color = "light" (click)="openPage('signUp')">SignUp New Account</button>
+      </ion-item>
+
+      <ion-item>
+          <button ion-button block large color = "light" (click)="openPage('guess')">Continue as Guess</button>
+      </ion-item>
+
+    </ion-list>
+
+</ion-content>

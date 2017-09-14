@@ -4,30 +4,73 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { MenuPage } from '../pages/menu/menu';
+import { ProductsByCategoryPage } from '../pages/products-by-category/products-by-category';
+import { ProductDetailsPage } from '../pages/product-details/product-details';
+import { CartPage } from '../pages/cart/cart';
+import { SignupPage } from '../pages/signup/signup';
+import { LoginPage} from '../pages/login/login';
+import { CheckoutPage} from '../pages/checkout/checkout';
+import {EmptyCartPage} from '../pages/empty-cart/empty-cart';
+import {LocationPage} from '../pages/location/location';
+import {PaymentPage} from '../pages/payment/payment';
+import {CheckoutNoLoginPage} from '../pages/checkout-no-login/checkout-no-login';
+import {PersonalInfoPage} from '../pages/personal-info/personal-info';
 
+import { HttpModule } from '@angular/http';
+import {PayPal} from '@ionic-native/paypal';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {Geolocation} from '@ionic-native/geolocation';
+import { IonicStorageModule } from '@ionic/storage';
+import {OneSignal} from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    MenuPage,
+    ProductsByCategoryPage,
+    ProductDetailsPage,
+    CartPage,
+    SignupPage,
+    LoginPage,
+    CheckoutPage,
+    EmptyCartPage,
+    LocationPage,
+    PaymentPage,
+    CheckoutNoLoginPage,
+    PersonalInfoPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    MenuPage,
+    ProductsByCategoryPage,
+    ProductDetailsPage,
+    CartPage,
+    SignupPage,
+    LoginPage,
+    CheckoutPage,
+    EmptyCartPage,
+    LocationPage,
+    PaymentPage,
+    CheckoutNoLoginPage,
+    PersonalInfoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    PayPal,
+    Geolocation,
+    OneSignal,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

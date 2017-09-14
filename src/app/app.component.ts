@@ -3,8 +3,13 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { MenuPage } from '../pages/menu/menu';
+//import { SignupPage } from '../pages/signup/signup';
+import { LoginPage} from '../pages/login/login';
+import { HomePage} from '../pages/home/home';
+import { OneSignal } from "@ionic-native/onesignal";
+import {CheckoutPage} from '../pages/checkout/checkout';
+import {LocationPage} from '../pages/location/location';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,33 +17,38 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = HomePage;//LoginPage;
 
-  pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public oneSignal: OneSignal) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
+
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      // Application ID, project number
+       this.oneSignal.startInit('855f1b57-83cf-459d-b83b-9423273fb078', '839616242222');
+
+       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+
+       this.oneSignal.handleNotificationReceived().subscribe(() => {
+      //   // do something when notification is received
+       });
+
+       this.oneSignal.handleNotificationOpened().subscribe(() => {
+      //   // do something when a notification is opened
+       });
+
+       this.oneSignal.endInit();
+
+
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-  }
 }

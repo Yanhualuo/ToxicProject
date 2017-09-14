@@ -1,0 +1,47 @@
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+    <!--  <ion-item this.homePage></ion-item> -->
+      <ion-item *ngFor="let category of categories" text-wrap (click)="openCategoryPage(category)">
+       <!-- <ion-icon [name]="category.icon" item-left large></ion-icon> -->
+        <img src="./assets/images/logo.jpg" style = "width:30%; margin: auto; padding:20px;" item-left *ngIf="category.name == 'Sandwich'"/>
+        <img src="./assets/images/wing.jpg" style = "width:30%; margin: auto; padding:20px;" item-left *ngIf="category.name == 'Wings'"/>
+        <img src="./assets/images/coffee.jpg" style = "width:30%; margin: auto; padding:20px;" item-left *ngIf="category.name == 'Sides'"/>
+        <h2> {{ category.name}} </h2>
+        <p> {{ category.description}} </p>
+      </ion-item>
+
+    </ion-list>
+  
+  </ion-content>
+
+  <ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button color="danger" outline block (click) = "openPage('home')">Home</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="danger" outline block (click) = "openPage('menu')">Menu</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="danger" outline block (click) = "openPage('cart')">Cart</button>
+        </ion-col>
+        <ion-col  *ngIf="!loggedIn">
+          <button ion-button color="danger" outline block (click) = "openPage('login')">Login</button>
+        </ion-col>
+        <ion-col *ngIf="loggedIn">
+          <button ion-button color="danger" outline block (click) = "openPage('logout')">Logout</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

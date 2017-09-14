@@ -1,0 +1,38 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Payment</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-list radio-group [(ngModel)]="paymentMethod">
+        <ion-item>
+          <ion-label>VISA</ion-label>
+          <ion-radio value="visa"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cash</ion-label>
+          <ion-radio value="cash"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Discover</ion-label>
+          <ion-radio value="discover"></ion-radio>
+        </ion-item>
+      </ion-list>
+
+      <ion-item>
+          <ion-label>Payment Method</ion-label>
+          <ion-select [(ngModel)]="paymentMethod">
+            <ion-option *ngFor="let p of paymentMethods" value="{{p.method_id}}">{{ p.method_title }};
+            </ion-option>
+          </ion-select>
+      </ion-item>
+
+      
+
+</ion-content>

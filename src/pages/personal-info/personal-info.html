@@ -1,0 +1,40 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Personal Info</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <!-- ______________Begin of 1st section/// Personal Info ____________ -->
+              <ion-item-divider color="danger">Personal Details</ion-item-divider>
+              <ion-item>
+                <ion-label>First Name</ion-label>
+                <ion-input type="text" [(ngModel)]="newOrder.first_name"></ion-input>
+              </ion-item>
+        
+              <ion-item>
+                <ion-label>Last Name</ion-label>
+                <ion-input type="text" [(ngModel)]="newOrder.last_name"></ion-input>
+              </ion-item>
+        
+              <ion-item>
+                <ion-label>Email</ion-label>
+                <ion-input type="email" [(ngModel)]="newOrder.email"></ion-input>
+              </ion-item>
+        
+              <ion-item>
+                <ion-label>Phone</ion-label>
+                <ion-input type="tel" clearInput [(ngModel)]="newOrder.phone"></ion-input>        
+              </ion-item>
+        <!-- ______________End of 1st section/// Personal Info ____________ -->
+    </ion-list>
+</ion-content>
+
+<ion-footer>
+    <button ion-button block color="danger" (click)="location()">Next: Pick-up Location</button>
+  </ion-footer>
