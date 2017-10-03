@@ -9,7 +9,7 @@
 
 
 <ion-content>
-
+<!--
     <ion-list radio-group [(ngModel)]="paymentMethod">
         <ion-item>
           <ion-label>VISA</ion-label>
@@ -34,5 +34,38 @@
       </ion-item>
 
       
+    -->
+    <ion-item-divider color="danger">Payment</ion-item-divider>
+    <ion-item>
+      <ion-label>Payment Method</ion-label>
+      <ion-select [(ngModel)]="paymentMethod">
+        <ion-option *ngFor="let p of paymentMethods" value="{{p.method_id}}">{{ p.method_title }};
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="paymentMethod == 'VISA'">
+      <ion-label>Card Number</ion-label>
+      <ion-input type="number" [(ngModel)]="newOrder.cardNumber"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="paymentMethod == 'VISA'">
+      <ion-label>Expiration Date</ion-label>
+      <ion-select [(ngModel)]="newOrder.payment_card_month">
+        <ion-option value="Jan">Jan</ion-option>
+        <ion-option value="Feb">Feb</ion-option>
+      </ion-select>
+    </ion-item>
+    <!--
+    <ion-item *ngIf="paymentMethod == 'VISA'" item-right>
+      <ion-select [(ngModel)]="newOrder.payment_card_date">
+        <ion-option value="01">01</ion-option>
+        <ion-option value="02">02</ion-option>
+      </ion-select>
 
+    </ion-item>
+    -->
+    
 </ion-content>
+
+<ion-footer>
+  <button ion-button block color="danger" (click)="placeOrder()">Place Order</button>
+</ion-footer>

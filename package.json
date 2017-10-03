@@ -31,6 +31,7 @@
         "com.paypal.cordova.mobilesdk": "^3.5.0",
         "cordova-android": "^6.2.3",
         "cordova-android-play-services-gradle-release": "0.0.2",
+        "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.5",
@@ -73,6 +74,7 @@
         },
         "platforms": [
             "android",
+            "browser",
             "ios"
         ]
     }
