@@ -1,6 +1,7 @@
 import { Component, ViewChild ,ElementRef } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
+import { Http, Response } from '@angular/http';
 
 import {PaymentPage} from '../payment/payment';
 declare var google;
@@ -17,7 +18,8 @@ export class LocationPage {
   map: any;
   places : Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation) {
+  constructor(public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation) {
+      this.getSchedule();
   }
 
 ionViewDidEnter(){
@@ -115,9 +117,32 @@ createMarker(place)
     position: place.geometry.location
     });   
   }
+
+
   
 payment(){
     this.navCtrl.push(PaymentPage);
+}
+
+getSchedule(){
+    this.http.get("http://thetoxicwings.com/getTimes.php")
+    .subscribe( (res) => {
+      console.log(res.json());
+      console.log(res.json()[0]);
+
+    //id，time1到time10，读取数据方法
+      console.log(res.json()[0].id);
+
+      let response = res.json();
+
+      if(response.error){
+        this.toastCtrl.create({
+          message: response.error,
+          duration: 5000
+        }).present();
+        return;
+      }
+    });
 }
 
 
