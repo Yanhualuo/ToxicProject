@@ -7,9 +7,10 @@ import { MenuPage } from '../pages/menu/menu';
 //import { SignupPage } from '../pages/signup/signup';
 import { LoginPage} from '../pages/login/login';
 import { HomePage} from '../pages/home/home';
-import { OneSignal } from "@ionic-native/onesignal";
+import { OneSignal } from '@ionic-native/onesignal';
 import {CheckoutPage} from '../pages/checkout/checkout';
 import {LocationPage} from '../pages/location/location';
+import {PaymentPage} from '../pages/payment/payment';
 
 @Component({
   templateUrl: 'app.html'

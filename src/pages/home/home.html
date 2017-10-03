@@ -81,8 +81,8 @@
         <ion-col>
           
           <button ion-button color="danger" outline block (click) = "openPage('home')">
-            <ion-icon name="home" isActive="false" style="font-size:25px;"> Home</ion-icon></button>
-  
+            <ion-icon name="home" isActive="false"> Home</ion-icon></button>
+      
         </ion-col>
         <ion-col>
           <button ion-button color="danger" outline block (click) = "openPage('menu')">Menu</button>
@@ -92,12 +92,13 @@
         </ion-col>
         <ion-col  *ngIf="!loggedIn">
           <button ion-button color="danger" outline block (click) = "openPage('login')">
-              <ion-icon name="person">Login</ion-icon>
+              <ion-icon name="person"> Login</ion-icon>
               </button>
         </ion-col>
         <ion-col *ngIf="loggedIn">
           <button ion-button color="danger" outline block (click) = "openPage('logout')">
-              <ion-icon name="contact"> Logout</ion-icon>
+              <ion-icon name="contact"> welcome </ion-icon>
+              <h5> {{ (this.user.firstname == " " ? this.user.username : this.user.firstname) || ""}} </h5>
             </button>
         </ion-col>
 
