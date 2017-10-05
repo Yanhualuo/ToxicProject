@@ -24,6 +24,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {Geolocation} from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
 import {OneSignal} from '@ionic-native/onesignal';
+import {ActionSheet} from '@ionic-native/action-sheet';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import {OneSignal} from '@ionic-native/onesignal';
     PayPal,
     Geolocation,
     OneSignal,
+    ActionSheet,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
