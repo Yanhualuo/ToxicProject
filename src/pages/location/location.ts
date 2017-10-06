@@ -1,5 +1,5 @@
 import { Component, ViewChild ,ElementRef } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
 import { Http, Response } from '@angular/http';
 import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
@@ -24,8 +24,10 @@ export class LocationPage {
   places : Array<any>;
   place: any;
   response: any;
+  pickupTime = null;
+  pickupLocation = null;
 
-  constructor(public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet) {
+  constructor(public alertCtrl: AlertController, public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet) {
       this.getSchedule();
 /*
       this.locations = [
@@ -146,15 +148,24 @@ createMarker(place)
   
   
 payment(){
-    this.navCtrl.push(PaymentPage);
+    if (this.pickupTime == null || this.pickupLocation == null){
+        this.alertCtrl.create({
+            title: "Missing Info",
+            message: "Please Choose Pickup Location and Time",
+          }).present();
+    }else{
+        this.navCtrl.push(PaymentPage);
+    }
+    
 }
 
 selectTime(id){
-    console.log("before");
+    this.pickupLocation = id;
+    //console.log("before");
     console.log(id);
-    console.log("id");
-    console.log(id=="943 River Road, Eugene");
-    console.log(id=="264 Valley River Center, Eugene");
+    //console.log("id");
+    //console.log(id=="943 River Road, Eugene");
+    //console.log(id=="264 Valley River Center, Eugene");
     var buttonLabels;
 
     if(id=="264 Valley River Center, Eugene"){
@@ -178,6 +189,11 @@ selectTime(id){
         
             this.actionSheet.show(options).then((buttonIndex: number) => {
                 console.log('Button pressed: ' + buttonIndex + 'at location:' + id);
+                this.pickupTime = buttonLabels[buttonIndex-1];
+                this.alertCtrl.create({
+                    title: "title"+buttonLabels[buttonIndex-1],
+                    message: "message"+buttonIndex,
+                  }).present();
             });
 
      
@@ -215,46 +231,46 @@ getTimes(number){
     var buttonLabels = ['11:00-12:00\naaa', '12:00-1:00', '1:00-2:00','2:00-3:00','3:00-4:00']
     var result = [];
     if (number == 0){
-        console.log("printing schedule");
-        console.log(this.getSchedule());
+        //console.log("printing schedule");
+        //console.log(this.getSchedule());
         //this.getSchedule();
 
-        console.log("global： " + this.response);
+        //console.log("global： " + this.response);
 
         //var temp = this.getSchedule();
         //console.log("print temp" + temp);
         var data:any = this.response[0];
         if(parseInt(data.time1) > 0){
-            result.push("11:00-12:00\n" + data.time1);
+            result.push("11:00-12:00");
         }
         if(parseInt(data.time2) > 0){
-            result.push("12:00-1:00\n" + data.time2);
+            result.push("12:00-1:00");
         }
         if(parseInt(data.time3) > 0){
-            result.push("1:00-2:00\n" + data.time3);
+            result.push("1:00-2:00");
         }
         if(parseInt(data.time4) > 0){
-            result.push("2:00-3:00\n" + data.time4);
+            result.push("2:00-3:00");
         }
         if(parseInt(data.time5) > 0){
-            result.push("3:00-4:00\n" + data.time5);
+            result.push("3:00-4:00");
         }
     }else if (number == 1){
         var data = this.response[1];
         if(parseInt(data.time1) > 0){
-            result.push("11:00-12:00\n" + data.time1);
+            result.push("11:00-12:00");
         }
         if(parseInt(data.time2) > 0){
-            result.push("12:00-1:00\n" + data.time2);
+            result.push("12:00-1:00");
         }
         if(parseInt(data.time3) > 0){
-            result.push("1:00-2:00\n" + data.time3);
+            result.push("1:00-2:00");
         }
         if(parseInt(data.time4) > 0){
-            result.push("2:00-3:00\n" + data.time4);
+            result.push("2:00-3:00");
         }
         if(parseInt(data.time5) > 0){
-            result.push("3:00-4:00\n" + data.time5);
+            result.push("3:00-4:00");
         }
     }
     console.log(result);
