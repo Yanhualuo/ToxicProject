@@ -26,7 +26,7 @@ export class LocationPage {
   response: any;
 
   constructor(public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet) {
-      //this.getSchedule();
+      this.getSchedule();
 /*
       this.locations = [
           {location_name: "AAA", location_id: "01", location_address:"Abc stress"},
@@ -186,11 +186,13 @@ selectTime(id){
 getSchedule(){
     this.http.get("http://thetoxicwings.com/getTimes.php")
     .subscribe( (res) => {
+      console.log("in schedule");
       console.log(res.json());
       console.log(res.json()[0]);
 
     //id，time1到time10，读取数据方法
       console.log(res.json()[0].id);
+      console.log("end schedule");
 
       this.response = res.json();
 
@@ -201,9 +203,10 @@ getSchedule(){
         }).present();
         return;
       }
+      //return this.response;
     });
-    console.log(this.response);
-    return this.response;
+    //console.log("in schedule: fsfsfsdf"+ this.response);
+    //return this.response;
 }
 
 //根据数据生成buttonlabel
@@ -214,12 +217,13 @@ getTimes(number){
     if (number == 0){
         console.log("printing schedule");
         console.log(this.getSchedule());
-        this.getSchedule();
+        //this.getSchedule();
 
         console.log("global： " + this.response);
 
-        
-        var data:any = this.getSchedule()[0];
+        //var temp = this.getSchedule();
+        //console.log("print temp" + temp);
+        var data:any = this.response[0];
         if(parseInt(data.time1) > 0){
             result.push("11:00-12:00\n" + data.time1);
         }
@@ -236,7 +240,7 @@ getTimes(number){
             result.push("3:00-4:00\n" + data.time5);
         }
     }else if (number == 1){
-        var data = this.getSchedule()[1];
+        var data = this.response[1];
         if(parseInt(data.time1) > 0){
             result.push("11:00-12:00\n" + data.time1);
         }
