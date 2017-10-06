@@ -23,9 +23,10 @@ export class LocationPage {
  // locations : Array<any>;
   places : Array<any>;
   place: any;
+  response: any;
 
   constructor(public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet) {
-      this.getSchedule();
+      //this.getSchedule();
 /*
       this.locations = [
           {location_name: "AAA", location_id: "01", location_address:"Abc stress"},
@@ -149,9 +150,22 @@ payment(){
 }
 
 selectTime(id){
+    console.log("before");
     console.log(id);
+    console.log("id");
+    console.log(id=="943 River Road, Eugene");
+    console.log(id=="264 Valley River Center, Eugene");
+    var buttonLabels;
 
-        let buttonLabels = ['11:00-12:00', '12:00-1:00', '1:00-2:00','2:00-3:00','3:00-4:00'];
+    if(id=="264 Valley River Center, Eugene"){
+        buttonLabels = this.getTimes(0);
+        console.log(buttonLabels);
+    }else if(id=="943 River Road, Eugene"){
+        buttonLabels = this.getTimes(1);
+        console.log(buttonLabels);
+    }
+
+        //buttonLabels = ['11:00-12:00\naaa', '12:00-1:00', '1:00-2:00','2:00-3:00','3:00-4:00'];
         
             const options: ActionSheetOptions = {
                 title: 'Choose Your Pick-up Time',
@@ -178,16 +192,69 @@ getSchedule(){
     //id，time1到time10，读取数据方法
       console.log(res.json()[0].id);
 
-      let response = res.json();
+      this.response = res.json();
 
-      if(response.error){
+      if(this.response.error){
         this.toastCtrl.create({
-          message: response.error,
+          message: this.response.error,
           duration: 5000
         }).present();
         return;
       }
     });
+    console.log(this.response);
+    return this.response;
+}
+
+//根据数据生成buttonlabel
+//时间表过多时可以使用两个array保存data.time和时间用以简化code
+getTimes(number){
+    var buttonLabels = ['11:00-12:00\naaa', '12:00-1:00', '1:00-2:00','2:00-3:00','3:00-4:00']
+    var result = [];
+    if (number == 0){
+        console.log("printing schedule");
+        console.log(this.getSchedule());
+        this.getSchedule();
+
+        console.log("global： " + this.response);
+
+        
+        var data:any = this.getSchedule()[0];
+        if(parseInt(data.time1) > 0){
+            result.push("11:00-12:00\n" + data.time1);
+        }
+        if(parseInt(data.time2) > 0){
+            result.push("12:00-1:00\n" + data.time2);
+        }
+        if(parseInt(data.time3) > 0){
+            result.push("1:00-2:00\n" + data.time3);
+        }
+        if(parseInt(data.time4) > 0){
+            result.push("2:00-3:00\n" + data.time4);
+        }
+        if(parseInt(data.time5) > 0){
+            result.push("3:00-4:00\n" + data.time5);
+        }
+    }else if (number == 1){
+        var data = this.getSchedule()[1];
+        if(parseInt(data.time1) > 0){
+            result.push("11:00-12:00\n" + data.time1);
+        }
+        if(parseInt(data.time2) > 0){
+            result.push("12:00-1:00\n" + data.time2);
+        }
+        if(parseInt(data.time3) > 0){
+            result.push("1:00-2:00\n" + data.time3);
+        }
+        if(parseInt(data.time4) > 0){
+            result.push("2:00-3:00\n" + data.time4);
+        }
+        if(parseInt(data.time5) > 0){
+            result.push("3:00-4:00\n" + data.time5);
+        }
+    }
+    console.log(result);
+    return result;
 }
 
 
