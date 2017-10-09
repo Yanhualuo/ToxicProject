@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Http, Response, URLSearchParams, Headers } from '@angular/http';
 import * as WC from 'woocommerce-api';
 
 // import { HomePage } from '../home/home';
@@ -19,10 +20,13 @@ export class PaymentPage {
   paymentMethod: any;
   billing_shipping_same: boolean;
   userInfo: any;
+  
+  //used for reward program
+  rewardPoint: any;
 
   showPaymentSection: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public payPal: PayPal) {
+  constructor(public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public payPal: PayPal) {
     this.newOrder = {};
     this.newOrder.billing_address = {};
     this.newOrder.shipping_address = {};
@@ -54,6 +58,10 @@ export class PaymentPage {
 
     })
 
+
+    //test usage
+    this.getPoint("aaa@gmail.com");
+    this.setPoint("aa@gmail.com", 10);
   }
 
   placeOrder() {
@@ -185,7 +193,48 @@ export class PaymentPage {
 
     }
 
-
   }
+
+  //get reward point from database.
+  getPoint(email){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let urlSearchParams = new URLSearchParams();
+    urlSearchParams.append("user_email", email);
+    let body = urlSearchParams.toString();
+    let body1 = {user_name: 'aaa@gmail.com'};
+    this.http.post('http://thetoxicwings.com/getPoints.php', body, {headers : headers})
+        .subscribe(
+          (res) =>{
+            let temp = res.json()[0].user_status;
+            //convert string to number
+            this.rewardPoint = +temp;
+          }
+        );
+  }
+    
+  //update reward poiint to databse
+  setPoint(email, point){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let urlSearchParams = new URLSearchParams();
+    urlSearchParams.append("user_email", email);
+    urlSearchParams.append("user_status", point);
+    let body = urlSearchParams.toString();
+    this.http.post('http://thetoxicwings.com/setPoints.php', body, {headers : headers})
+        .subscribe(
+          /*
+          (res) =>{
+            this.rewardPoint = +res.json()[0].user_status;
+            this.rewardPoint++;
+            console.log(res.json()[0].user_status);
+            console.log("reward: ");
+          }
+          */
+        );
+          
+  }
+
+    
 
 }

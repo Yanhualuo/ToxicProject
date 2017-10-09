@@ -148,6 +148,10 @@ createMarker(place)
   
   
 payment(){
+    this.navCtrl.push(PaymentPage);
+    //comment above and uncomment below for release version.
+    
+    /* 
     if (this.pickupTime == null || this.pickupLocation == null){
         this.alertCtrl.create({
             title: "Missing Info",
@@ -156,6 +160,7 @@ payment(){
     }else{
         this.navCtrl.push(PaymentPage);
     }
+    */
     
 }
 
@@ -188,12 +193,10 @@ selectTime(id){
             };
         
             this.actionSheet.show(options).then((buttonIndex: number) => {
-                console.log('Button pressed: ' + buttonIndex + 'at location:' + id);
+                //console.log('Button pressed: ' + buttonIndex + 'at location:' + id);
+                
+                //button Index是从1开始的，原因不详@_@
                 this.pickupTime = buttonLabels[buttonIndex-1];
-                this.alertCtrl.create({
-                    title: "title"+buttonLabels[buttonIndex-1],
-                    message: "message"+buttonIndex,
-                  }).present();
             });
 
      
@@ -219,7 +222,6 @@ getSchedule(){
         }).present();
         return;
       }
-      //return this.response;
     });
     //console.log("in schedule: fsfsfsdf"+ this.response);
     //return this.response;
