@@ -30,7 +30,7 @@
         "@ionic/storage": "2.0.1",
         "card.io.cordova.mobilesdk": "^2.1.0",
         "com.paypal.cordova.mobilesdk": "^3.5.0",
-        "cordova-android": "^6.3.0",
+        "cordova-android": "^6.2.3",
         "cordova-android-play-services-gradle-release": "0.0.2",
         "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.5.1",

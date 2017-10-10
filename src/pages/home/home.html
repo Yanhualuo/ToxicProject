@@ -1,33 +1,69 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
+    <div class="logoimage">
+    <img src= "./assets/images/color.png"  /> </div>
+    <ion-title class="titleText">WELCOME TO TOXIC</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content no-padding>
+<ion-content no-padding class="middle-card">
   <ion-fab right top edge (click)="openCart()">
     <button ion-fab color="danger">
       <ion-icon name = "cart">
       </ion-icon>
     </button>
-  </ion-fab>
+  </ion-fab> 
   
-  <ion-card>
-    <ion-slides autoplay = "3000" pager>
-
-      <ion-slide *ngFor="let number of [1,2,3,4,5,6]">
-        <img src= "./assets/images/{{number}}.png" />
-      </ion-slide>
-
-
-    </ion-slides>
+  <ion-card (click) = "openPage('menu')">
+    
+    <p class="banner">Earn points toward FREE DINNER for every qualifying order. Get started now.</p>
+    
   </ion-card>
 
-  <!-- Bannner -->
+  <ion-card class="middle-card">
+      <ion-grid>
+          <ion-row>
+            <ion-col>
+              
+              <button ion-button class="button_transparent" (click) = "openPage('home')">
+                <ion-icon name="home" isActive="false"> Home</ion-icon></button>
+          
+            </ion-col>
+            
+            <ion-col>
+              <button ion-button class="button_transparent" (click) = "openPage('location')">
+                <ion-icon name="locate" > Location</ion-icon></button>
+            </ion-col>
+            <ion-col  *ngIf="!loggedIn">
+              <button ion-button class="button_transparent" (click) = "openPage('login')">
+                  <ion-icon name="person"> Login</ion-icon>
+                  </button>
+            </ion-col>
+            <ion-col *ngIf="loggedIn">
+              <button ion-button class="button_transparent" (click) = "openPage('logout')">
+                  <ion-icon name="contact"> 
+                   {{ (this.user.firstname == " " ? this.user.username : this.user.firstname) || ""}}</ion-icon>
+                </button>
+            </ion-col>
+    
+          </ion-row>
+        </ion-grid>
+        <br />
+  </ion-card>
+
+  <ion-card>
+    
+      <ion-slides autoplay = "3000" pager>
+  
+        <ion-slide *ngFor="let number of [7,8,9]">
+          <img src= "./assets/images/{{number}}.png" />
+        </ion-slide>
+      </ion-slides>
+    </ion-card>
+
+<!--
+  
   <img style="margin-top: 10px;" src="./assets/images/banner.jpg" />
 
   <ion-grid>
@@ -35,7 +71,7 @@
       <ion-slides #productSlides> 
         <ion-slide *ngFor="let product of products"> 
           <ion-card no-padding>
-            <img [src]="product.featured_src" />
+            <img [src]="./assets/images/{{number}}.png" />
             <h1 padding center> {{product.title}} </h1>
 
             <p center padding [innerHTML] = "product.short_description">  </p>
@@ -66,7 +102,7 @@
     </ion-item>
   </ion-list>
 
-<!--
+
   <ion-infinite-scroll (ionInfinite)="loadMoreProducts($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
 
@@ -76,30 +112,11 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-grid>
-      <ion-row>
+    <ion-grid class="middle-card">
+      <ion-row >
+        
         <ion-col>
-          
-          <button ion-button color="danger" outline block (click) = "openPage('home')">
-            <ion-icon name="home" isActive="false"> Home</ion-icon></button>
-      
-        </ion-col>
-        <ion-col>
-          <button ion-button color="danger" outline block (click) = "openPage('menu')">Menu</button>
-        </ion-col>
-        <ion-col>
-          <button ion-button color="danger" outline block (click) = "openPage('location')">Location</button>
-        </ion-col>
-        <ion-col  *ngIf="!loggedIn">
-          <button ion-button color="danger" outline block (click) = "openPage('login')">
-              <ion-icon name="person"> Login</ion-icon>
-              </button>
-        </ion-col>
-        <ion-col *ngIf="loggedIn">
-          <button ion-button color="danger" outline block (click) = "openPage('logout')">
-              <ion-icon name="contact"> welcome </ion-icon>
-              <h5> {{ (this.user.firstname == " " ? this.user.username : this.user.firstname) || ""}} </h5>
-            </button>
+          <button ion-button class="menu-button" (click) = "openPage('menu')"><p class="full-menu">Full Menu</p></button>
         </ion-col>
 
       </ion-row>

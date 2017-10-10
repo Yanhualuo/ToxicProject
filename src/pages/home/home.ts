@@ -63,7 +63,7 @@ export class HomePage {
   });
 
   }
-
+/*
   ionViewDidLoad(){
     setInterval(() => {
 
@@ -73,7 +73,7 @@ export class HomePage {
       this.productSlides.slideNext();
     },3000)
   }
-
+*/
 
 
   loadMoreProducts(event){

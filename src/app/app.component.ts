@@ -11,6 +11,8 @@ import { OneSignal } from '@ionic-native/onesignal';
 import {CheckoutPage} from '../pages/checkout/checkout';
 import {LocationPage} from '../pages/location/location';
 import {PaymentPage} from '../pages/payment/payment';
+import {PersonalInfoPage} from '../pages/personal-info/personal-info';
+import {EmptyCartPage} from '../pages/empty-cart/empty-cart';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,7 +20,7 @@ import {PaymentPage} from '../pages/payment/payment';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;//LoginPage;
+  rootPage: any = HomePage;//EmptyCartPage;//LoginPage;
 
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public oneSignal: OneSignal) {
