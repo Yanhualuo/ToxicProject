@@ -1,11 +1,11 @@
 import { Component, ViewChild ,ElementRef } from '@angular/core';
-import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController,ModalController } from 'ionic-angular';
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
 import { Http, Response } from '@angular/http';
 import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
 import {LoadingController} from 'ionic-angular';
 import {PaymentPage} from '../payment/payment';
-
+import {HomePage} from '../home/home';
 import {FormsModule} from '@angular/forms';
 declare var google;
 
@@ -26,7 +26,7 @@ export class LocationPage {
   pickupTime = null;
   pickupLocation = null;
 
-  constructor(public alertCtrl: AlertController, public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet, public loadingCtrl: LoadingController) {
+  constructor(public alertCtrl: AlertController, public modalCtrl: ModalController, public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet, public loadingCtrl: LoadingController) {
       this.getSchedule();
 
   }
@@ -165,6 +165,11 @@ payment(){
     }
     */
     
+}
+openPage(pageName){
+    if (pageName == "home"){
+        this.modalCtrl.create(HomePage).present();
+    }
 }
 
 selectTime(id){

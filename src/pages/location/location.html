@@ -54,5 +54,15 @@
 </ion-content>
 
 <ion-footer>
- <button ion-button block color="danger" (click)="payment()">Next: Payment</button>
+
+     <ion-card >
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <button ion-button class="paymentButton" (click)="payment()"><p class="payment-button-p"><ion-icon name="cash">  Next: Payment  <ion-icon name="card"></ion-icon></ion-icon></p> </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+ 
  </ion-footer>
