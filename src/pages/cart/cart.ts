@@ -74,9 +74,6 @@ export class CartPage {
     this.viewCtrl.dismiss();
   }
 
-  checkout(){
-
-
   openPage(pageName){
 /*
     if (pageName == "checkout"){

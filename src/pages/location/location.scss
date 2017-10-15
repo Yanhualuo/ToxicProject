@@ -11,4 +11,27 @@ page-location {
     ion-app._gmaps_cdv_ .nav-decor{
         background-color: transparent !important;
       }
+
+      .custom-icon-home{
+        font-size: 52px;
+        color: #851814;
+        background-color: transparent;
+        background: transparent;
+    }
+    button.custom-icon{
+        background-color: transparent;
+      //  background: transparent;
+    }
+
+    button.custom-icon-home:focus{
+        background-color: darkRed;
+    }
+    button.custom-icon:active {
+        background-color: darkRed;
+    }
+
+    button.custom-icon:focus {
+        background-color:rgba(133,24,20, 0.5);
+      //  opacity: 0.5;
+    }
 }

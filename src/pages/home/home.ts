@@ -132,7 +132,7 @@ export class HomePage {
     }
     
     if (pageName == 'location') {
-      this.navCtrl.push(LocationPage);
+      this.modalCtrl.create(LoginPage).present();
       
     }
 
