@@ -4,6 +4,13 @@ page-home {
     ion-card {
         margin:0 !important;
         width:100% !important;
+        outline:none;
+        border: none;
+        overflow: hidden;
+    }
+
+    ion-card buttonClass{
+        background-color: white;
     }
     /*
     .toolbar-background{
@@ -30,23 +37,41 @@ page-home {
    button.button_transparent{
     display: block;
     box-sizing: border-box;
-    margin: 5%, 0, 5%, 5%;
-    padding: 8px;
+  //  margin-bottom: ;
+  //  padding: 8px;
     width: 100%;
    // max-width: 200px;
-    border: 1px solid black;
-    background-color: rgb(255, 255, 255);
-    opacity: 0.7;
-    border-radius: 8px;
-    color:black;
+   color:#851814;
+    border: 1px solid #851814;
+    background-color:white;
+  //  opacity: 0.8;
+    border-radius: 3px;
+   // color:gray;
     text-align: center;
     text-decoration: none;
     letter-spacing: 1px;
     transition: all 0.3s ease-out;
+    outline: none;
+   }
+
+   button.button_transparent:active{
+       background-color:rgba(133,24,20, 0.5);
+   }
+   button.button_transparent:focus{
+        background-color:rgba(133,24,20, 0.5);
+        border: none;
+        outline: none;
+   }
+
+   .button_text{
+       color:#706C6C;
+       font-size: 18px;
+       font-weight: bold;
+       font-family: 'Times New Roman', Times, serif;
    }
 
    .middle-card{
-       background-color:#851814;
+       background-color:#F8F7F7;
        width: 100%;
    }
 
@@ -55,12 +80,20 @@ page-home {
        box-sizing: border-box;
        width:100%;
        background-color: #fff;
-       opacity: 0.7;
+       opacity: 0.8;
        color: black;
        letter-spacing: 1px;
        text-align: center;
 
    }
+   
+   .menuButton :active{
+    background-color:rgba(133,24,20, 0.5);
+  }
+
+    .menuButton:focus{
+    background-color:rgba(133,24,20, 0.5);
+}
 
    p.full-menu{
        font-size: 28px;
@@ -68,5 +101,42 @@ page-home {
        color: black;
    }
 
+   header{
+    background-color:#851814;
+    width:100%;
+   }
+   
+   .button-card{
+    background-color:white;
+    width: 80%;
+    opacity: 0.5;
+    width: 100%;
+   }
 
+   .menuButton{
+       background-color: #851814;
+       background-repeat: no-repeat;
+       border: none;
+       cursor: pointer;
+       overflow: hidden;
+       outline: none;
+       width: 100%;
+     //  margin-top: 10%;
+   }
+
+   p.news_aboutus_p{
+      
+       font-size: 20px;
+       color: white;
+       font-weight: bold;
+       font-family: 'Times New Roman', Times, serif;
+   }
+
+   .pic_slide{
+       position: center;
+     //  align-content: middle;
+     padding:5%;
+     background-color: #F8F7F7;
+   //  opacity: 0.7;
+   }
 }

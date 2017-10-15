@@ -3,16 +3,19 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+// All comment out import are just for testing purpose!
+
 import { MenuPage } from '../pages/menu/menu';
 //import { SignupPage } from '../pages/signup/signup';
-import { LoginPage} from '../pages/login/login';
+//import { LoginPage} from '../pages/login/login';
 import { HomePage} from '../pages/home/home';
 import { OneSignal } from '@ionic-native/onesignal';
-import {CheckoutPage} from '../pages/checkout/checkout';
-import {LocationPage} from '../pages/location/location';
-import {PaymentPage} from '../pages/payment/payment';
-import {PersonalInfoPage} from '../pages/personal-info/personal-info';
-import {EmptyCartPage} from '../pages/empty-cart/empty-cart';
+import {CartPage} from '../pages/cart/cart';
+//import {CheckoutPage} from '../pages/checkout/checkout';
+//import {LocationPage} from '../pages/location/location';
+//import {PaymentPage} from '../pages/payment/payment';
+//import {PersonalInfoPage} from '../pages/personal-info/personal-info';
+//import {EmptyCartPage} from '../pages/empty-cart/empty-cart';
 
 @Component({
   templateUrl: 'app.html'

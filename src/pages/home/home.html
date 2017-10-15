@@ -1,8 +1,10 @@
+
 <ion-header>
+  
   <ion-navbar>
     <div class="logoimage">
-    <img src= "./assets/images/color.png"  /> </div>
-    <ion-title class="titleText">WELCOME TO TOXIC</ion-title>
+    <img src= "./assets/images/color.png"  /></div>
+   <!-- <ion-title class="titleText">WELCOME TO TOXIC</ion-title> -->
   </ion-navbar>
 
 </ion-header>
@@ -21,47 +23,17 @@
     
   </ion-card>
 
-  <ion-card class="middle-card">
-      <ion-grid>
-          <ion-row>
-            <ion-col>
-              
-              <button ion-button class="button_transparent" (click) = "openPage('home')">
-                <ion-icon name="home" isActive="false"> Home</ion-icon></button>
-          
-            </ion-col>
-            
-            <ion-col>
-              <button ion-button class="button_transparent" (click) = "openPage('location')">
-                <ion-icon name="locate" > Location</ion-icon></button>
-            </ion-col>
-            <ion-col  *ngIf="!loggedIn">
-              <button ion-button class="button_transparent" (click) = "openPage('login')">
-                  <ion-icon name="person"> Login</ion-icon>
-                  </button>
-            </ion-col>
-            <ion-col *ngIf="loggedIn">
-              <button ion-button class="button_transparent" (click) = "openPage('logout')">
-                  <ion-icon name="contact"> 
-                   {{ (this.user.firstname == " " ? this.user.username : this.user.firstname) || ""}}</ion-icon>
-                </button>
-            </ion-col>
-    
-          </ion-row>
-        </ion-grid>
-        <br />
-  </ion-card>
 
-  <ion-card>
+  <ion-card class="pic_slide">
     
-      <ion-slides autoplay = "3000" pager>
+      <ion-slides autoplay = "3000">
   
         <ion-slide *ngFor="let number of [7,8,9]">
           <img src= "./assets/images/{{number}}.png" />
         </ion-slide>
       </ion-slides>
     </ion-card>
-
+  
 <!--
   
   <img style="margin-top: 10px;" src="./assets/images/banner.jpg" />
@@ -108,18 +80,56 @@
 
   </ion-infinite-scroll>
 -->
+
+
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-grid class="middle-card">
-      <ion-row >
-        
-        <ion-col>
-          <button ion-button class="menu-button" (click) = "openPage('menu')"><p class="full-menu">Full Menu</p></button>
-        </ion-col>
+  
+    <ion-card class="middle-card">
+        <ion-grid >
 
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+            <ion-row>
+
+                <ion-col col-4>  
+                  <button ion-button class="button_transparent" (click) = "openPage('location')">
+                      <ion-icon name="locate"></ion-icon> 
+                      <div class="button_text">&nbsp;Location</div>
+                    </button>             
+                </ion-col>
+                
+                <ion-col  col-4 *ngIf="!loggedIn">
+                  <button ion-button class="button_transparent" (click) = "openPage('login')">
+                      <ion-icon name="person"></ion-icon> 
+                      <div class="button_text"> &nbsp; Login</div>
+                      </button>
+                </ion-col>
+
+                <ion-col col-4 *ngIf="loggedIn">
+                  <button ion-button class="button_transparent" (click) = "openPage('logout')">
+                      <ion-icon name="contact"> </ion-icon>
+                       <div class="button_text">
+                          &nbsp; {{ (this.user.firstname == " " ? this.user.username : this.user.firstname) || ""}}</div>
+                    </button>
+                </ion-col>  
+
+                  <ion-col col-4>  
+                      <button ion-button class="button_transparent" (click) = "openPage('news')">
+                        <ion-icon name="locate" > </ion-icon>
+                        <div class="button_text">&nbsp; News </div>
+                          </button>             
+                    </ion-col>
+              </ion-row>
+
+          <ion-row>
+              <ion-col>
+                  <button ion-button class="menuButton" (click) = "openPage('menu')"><p class="news_aboutus_p"><ion-icon name="beer"> Full Menu</ion-icon></p>
+                  </button>
+                </ion-col>    
+          </ion-row>
+
+
+        </ion-grid>
+      </ion-card>
+
 </ion-footer>

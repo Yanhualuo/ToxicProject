@@ -6,14 +6,13 @@ import {EmptyCartPage} from '../empty-cart/empty-cart';
 import {MenuPage} from '../menu/menu';
 import {LoginPage} from '../login/login';
 import {LocationPage} from '../location/location';
-
-import {ProductsByCategoryPage} from '../products-by-category/products-by-category';
+//import {ProductsByCategoryPage} from '../products-by-category/products-by-category';
 import { Storage } from '@ionic/storage';
 
 import * as WC from 'woocommerce-api';
 
 @Component({
-  selector: 'page-home',
+  selector: 'page-home', 
   templateUrl: 'home.html'
 })
 export class HomePage {
@@ -24,17 +23,28 @@ export class HomePage {
   page: number;
   loggedIn: boolean;
   user: any;
+  categories: any[];
 
   @ViewChild('productSlides') productSlides: Slides;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage,) {
 
     this.page = 2;
+    this.categories = [];
+    this.user = [];
 
     this.WooCommerce = WC({
       url: "http://thetoxicwings.com",
       consumerKey: "ck_4f3229f128bcf1e13e1103680750ee5f57386339",
       consumerSecret: "cs_ea9582df02a8e605acdaf5fea72191d1aa6884dd"
+    });
+
+    this.WooCommerce.getAsync("products/categories").then( (data) => {
+      console.log(JSON.parse(data.body).product_categories);
+
+      let temp: any[] = JSON.parse(data.body).product_categories;
+    }, (err) => {
+      console.log(err)
     });
 
     this.loadMoreProducts(null);
@@ -45,6 +55,7 @@ export class HomePage {
     }, (err) => {
       console.log(err)
     });
+
 
       this.storage.ready().then(() => {
       this.storage.get("userLoginInfo").then((userLoginInfo) => {
@@ -63,17 +74,6 @@ export class HomePage {
   });
 
   }
-/*
-  ionViewDidLoad(){
-    setInterval(() => {
-
-      if (this.productSlides.getActiveIndex() == this.productSlides.length() - 1)
-        this.productSlides.slideTo(0);
-
-      this.productSlides.slideNext();
-    },3000)
-  }
-*/
 
 
   loadMoreProducts(event){
@@ -112,7 +112,7 @@ export class HomePage {
       this.modalCtrl.create(HomePage).present();
     }
     if (pageName == "menu"){
-      this.navCtrl.push(MenuPage);
+      this.modalCtrl.create(MenuPage).present();
     }
     if (pageName == "logout") {
     
@@ -123,8 +123,7 @@ export class HomePage {
        this.modalCtrl.create(HomePage).present();
     }
     if (pageName == 'login'){
-       this.modalCtrl.create(LoginPage, {next: HomePage}).present();
-      //this.navCtrl.push(LoginPage, {next: HomePage})
+       this.modalCtrl.create(LoginPage).present();
     }
 
     if (pageName == 'cart') {

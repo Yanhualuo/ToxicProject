@@ -54,9 +54,9 @@ this.http.get("http://thetoxicwings.com/api/auth/generate_auth_cookie/?insecure=
               this.events.publish("updateMenu");
 
               if(this.navParams.get("next")){
-                this.navCtrl.push(HomePage);
-              } else {
                 this.modalCtrl.create(HomePage).present();
+              } else {
+                this.modalCtrl.create(SignupPage).present();
               }             
             }
           }]
@@ -75,10 +75,55 @@ this.http.get("http://thetoxicwings.com/api/auth/generate_auth_cookie/?insecure=
   
   }
   
-    
-  signup(){
-    
+  openPage(pageName){
+    if (pageName == "home"){
+      this.modalCtrl.create(HomePage).present();
+  }
+    if (pageName == "signUp"){
     this.navCtrl.push(SignupPage); 
-   }
+  }
+    if (pageName == "logIn"){
+    this.http.get("http://thetoxicwings.com/api/auth/generate_auth_cookie/?insecure=cool&username=" + this.username + "&password=" + this.password)
+    .subscribe( (res) => {
+      console.log(res.json());
+
+      let response = res.json();
+
+      if(response.error){
+        this.toastCtrl.create({
+          message: response.error,
+          duration: 5000
+        }).present();
+        return;
+      }
+
+      this.storage.set("userLoginInfo", response).then( (data) =>{
+
+        this.alertCtrl.create({
+          title: "Login Successful",
+          message: "You have been logged in successfully.",
+          buttons: [{
+            text: "OK",
+            handler: () => {
+
+              this.events.publish("updateMenu");
+
+              if(this.navParams.get("next")){
+                this.modalCtrl.create(HomePage).present();
+              } else {
+                this.modalCtrl.create(SignupPage).present();
+              }             
+            }
+          }]
+        }).present();
+
+
+      })
+
+    });
+  //  this.navCtrl.push(HomePage);
+  //  this.modalCtrl.create(HomePage).present();
+    }
+  }
 
 }

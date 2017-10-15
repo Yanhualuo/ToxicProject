@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import {Storage} from '@ionic/storage';
 
@@ -8,6 +8,8 @@ import {LoginPage} from '../login/login';
 import {EmptyCartPage} from '../empty-cart/empty-cart';
 import {CheckoutNoLoginPage} from '../checkout-no-login/checkout-no-login';
 import {PersonalInfoPage} from '../personal-info/personal-info';
+import {MenuPage} from '../menu/menu';
+import {HomePage} from '../home/home';
 
 @Component({
   selector: 'page-cart',
@@ -18,8 +20,9 @@ export class CartPage {
   cartItems: any[] = [];
   total: any;
   showEmptyCartMessage: boolean = false;
+  cartItem: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage:Storage, public viewCtrl:ViewController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public storage:Storage, public viewCtrl:ViewController) {
   
     this.total = 0.0;
 
@@ -74,6 +77,9 @@ export class CartPage {
   checkout(){
 
 
+  openPage(pageName){
+/*
+    if (pageName == "checkout"){
     this.storage.get("userLoginInfo").then( (data) => {
       if(data != null){
         this.navCtrl.push(PersonalInfoPage);
@@ -85,6 +91,27 @@ export class CartPage {
 
  //   this.navCtrl.push(CheckoutPage);
   
+  }
+*/
+    if (pageName == "menu"){
+      this.modalCtrl.create(MenuPage).present();
+    }
+
+    if (pageName == "home"){
+      this.modalCtrl.create(HomePage).present();
+    }
+
+    if (pageName == "checkout"){
+      this.storage.get("userLoginInfo").then ((data) =>{
+        if (data != null) {
+          this.navCtrl.push(CheckoutPage);
+        }
+        else{
+          this.navCtrl.push(CheckoutNoLoginPage);
+        }
+      })
+
+    }
   }
 
 }

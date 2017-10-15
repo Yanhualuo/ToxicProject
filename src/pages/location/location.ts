@@ -3,7 +3,7 @@ import { NavController, NavParams, ToastController, AlertController } from 'ioni
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
 import { Http, Response } from '@angular/http';
 import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
-
+import {LoadingController} from 'ionic-angular';
 import {PaymentPage} from '../payment/payment';
 
 import {FormsModule} from '@angular/forms';
@@ -19,27 +19,30 @@ export class LocationPage {
   currentPos: Geoposition;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
- // location=0;
- // locations : Array<any>;
+
   places : Array<any>;
   place: any;
   response: any;
   pickupTime = null;
   pickupLocation = null;
 
-  constructor(public alertCtrl: AlertController, public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet) {
+  constructor(public alertCtrl: AlertController, public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet, public loadingCtrl: LoadingController) {
       this.getSchedule();
-/*
-      this.locations = [
-          {location_name: "AAA", location_id: "01", location_address:"Abc stress"},
-          {location_name: "BBB", location_id: "02", location_address:"cdf ave."}
-      ];
-      */
+
   }
 
 ionViewDidEnter(){
   this.getUserPosition();
-  
+  this.presentLoading();
+}
+
+// map loading kind of slow, duration for 4 seconds
+presentLoading(){
+    let loader = this.loadingCtrl.create({
+        content: "Loading...",
+        duration: 3000
+    });
+    loader.present();
 }
 
 addMap(lat,long){
@@ -116,7 +119,7 @@ getRestaurants(latLng)
     let request = {
         location : latLng,
         radius : 8047 ,
-        name: "Toxic",
+        name: "Toxic Wings",
         types: ["restaurant"]
     };
     return new Promise((resolve,reject)=>{

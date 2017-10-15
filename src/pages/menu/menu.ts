@@ -23,7 +23,7 @@ export class MenuPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public modalCtrl: ModalController, public events: Events) {
    
-    this.homePage = HomePage
+   // this.homePage = HomePage
     this.categories = [];
     this.user = [];
 
@@ -59,7 +59,7 @@ export class MenuPage {
     }, (err) => {
       console.log(err)
     });
-    
+  
     this.events.subscribe("updateMenu", () => {
       this.storage.ready().then(() => {
         this.storage.get("userLoginInfo").then((userLoginInfo) => {

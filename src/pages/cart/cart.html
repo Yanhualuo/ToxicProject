@@ -1,25 +1,26 @@
 
 <ion-header>
+    
+    <ion-navbar>
+      
+      <button ion-button class="custom-icon" (click) = "openPage('home')"><ion-icon class="custom-icon-home" name="home"></ion-icon></button>
+     <!-- <ion-title class="titleText">WELCOME TO TOXIC</ion-title> -->
 
-  <ion-navbar>
-    <ion-title>Your cart</ion-title>
-  </ion-navbar>
+    </ion-navbar>
 
-</ion-header>
+  
+  </ion-header>
 
 
-<ion-content>
 
-  <ion-card>
+
+<ion-content class="body_bg">
+
+  <ion-card >
     <ion-grid>
-      <ion-row>
+      <ion-row *ngIf="total == 0">
         <ion-col>
-          Your Cart Description
-        </ion-col>
-      </ion-row>
-      <ion-row [hidden] = "!showEmptyCartMessage">
-        <ion-col>
-          There are no products in your cart
+        <p class="empty-cart-msg">  Your cart is empty. <br /> Select Menu to get started.</p> 
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -67,21 +68,19 @@
       </ion-grid>
     </ion-card>
   </ion-grid>
-
+  <button ion-button class="checkoutButton" (click) = "openPage('checkout')"><p class="menu-button-p"><ion-icon name="cart"> CheckOut</ion-icon></p> </button>
 
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <button ion-button color="danger" outline block (click) = "closeModal()">Back</button>
-        </ion-col>
-        <ion-col>
-          <button ion-button color="danger" outline block (click) = "checkout()">CheckOut</button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+<ion-footer class="middle-card">
+  <ion-card >
+   <ion-grid>
+       <ion-row>
+         <ion-col>
+          <button ion-button class="menuButton" (click) = "openPage('menu')"><p class="menu-button-p"><ion-icon name="beer"> Full Menu</ion-icon></p> </button>
+         </ion-col>
+        </ion-row>
+        </ion-grid>
+  </ion-card>
+ 
 </ion-footer>

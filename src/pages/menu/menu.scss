@@ -1,3 +1,57 @@
 page-menu {
 
+    .body_bg{
+        background-image: url("/assets/images/bg.png");
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 90%;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .food_category{
+        background-color: white;
+        opacity: 0.96;
+    }
+
+    .buttons{
+        background-color: white;
+        opacity: 0.8;
+        border-radius: 3px;
+        color:black;
+        font-weight: bold;
+    }
+    .button:active{
+        background-color: rgba(133,24,20, 0.5);
+    }
+    .button:focus{
+        background-color: rgba(133,24,20, 0.5);
+        border: none;
+        outline: none;
+    }
+
+    .footer_bg{
+      //  background-color: #851814;
+        background-color:  rgba(133,24,20, 0.9)
+    }
+
+    .logoimage{
+      //  background-image: url("/assets/images/color.png");
+        width:100%;
+        height: 100%;
+     //   background-repeat: no-repeat;
+
+    }
+
+    .menuButton{
+        background-color: #851814;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        width: 100%;
+      //  margin-top: 10%;
+    }
+
 }

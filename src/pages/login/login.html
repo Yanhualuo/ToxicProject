@@ -2,6 +2,7 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button class="custom-icon" (click) = "openPage('home')"><ion-icon class="custom-icon-home" name="home"></ion-icon></button>
     <ion-title>Login</ion-title>
   </ion-navbar>
 
@@ -25,6 +26,6 @@
     </ion-item>
   </ion-list>
 
-  <button ion-button block color = "danger" (click)="login()">Login</button>
-  <button ion-button clear block color = "danger" (click) = "signup()">No Account? Sign Up Here</button>
+  <button ion-button block color = "danger" (click)="openPage('logIn')">Login</button>
+  <button ion-button clear block color = "danger" (click) = "openPage('signUp')">No Account? Sign Up Here</button>
 </ion-content>
