@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgZone } from '@angular/core';
 import { NavController, NavParams, ModalController,Events} from 'ionic-angular';
 import { HomePage } from '../home/home';
 import {SignupPage} from '../signup/signup';
@@ -21,7 +21,7 @@ export class MenuPage {
   loggedIn: boolean;
   user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public modalCtrl: ModalController, public events: Events) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public modalCtrl: ModalController, public events: Events,private ngZone: NgZone) {
    
    // this.homePage = HomePage
     this.categories = [];
@@ -34,8 +34,9 @@ export class MenuPage {
     });
 
       this.WooCommerce.getAsync("products/categories").then( (data) => {
+        this.ngZone.run( ()=>{ 
       console.log(JSON.parse(data.body).product_categories);
-
+    })
       let temp: any[] = JSON.parse(data.body).product_categories;
 
       for (let i = 0; i < temp.length; i++){

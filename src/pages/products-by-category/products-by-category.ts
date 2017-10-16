@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import {ProductDetailsPage} from '../product-details/product-details';
 //import {MenuSubPage} from '../menu-sub/menu-sub';
@@ -16,10 +16,14 @@ export class ProductsByCategoryPage {
   page: number;
   category: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,  private ngZone: NgZone) {
 
     this.page = 1;
     this.category = this.navParams.get("category");
+
+    
+      
+
 
     this.WooCommerce = WC({
       url: "http://thetoxicwings.com",
@@ -29,10 +33,17 @@ export class ProductsByCategoryPage {
 
     this.WooCommerce.getAsync("products?filter[category]=" + this.category.slug).then( (data) => {
       console.log(JSON.parse(data.body));
+     
+      this.ngZone.run( ()=>{ 
       this.products = JSON.parse(data.body).products;
+    })
+
     }, (err) => {
       console.log(err)
     })
+    
+     
+  
 
   }
 
