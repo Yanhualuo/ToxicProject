@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides, ModalController } from 'ionic-angular';
+import { NavController, Slides, ModalController, NavParams } from 'ionic-angular';
 import {ProductDetailsPage} from '../product-details/product-details';
 import {CartPage} from '../cart/cart';
 import {EmptyCartPage} from '../empty-cart/empty-cart';
@@ -23,16 +23,19 @@ export class HomePage {
   page: number;
   loggedIn: boolean;
   user: any;
+  category: any;
   categories: any[];
 
   @ViewChild('productSlides') productSlides: Slides;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage,) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage, public navParams: NavParams) {
 
     this.page = 2;
     this.categories = [];
     this.user = [];
-
+    /*
+    this.category = this.navParams.get("category");
+*/
     this.WooCommerce = WC({
       url: "http://thetoxicwings.com",
       consumerKey: "ck_4f3229f128bcf1e13e1103680750ee5f57386339",
@@ -46,7 +49,14 @@ export class HomePage {
     }, (err) => {
       console.log(err)
     });
-
+/*
+    this.WooCommerce.getAsync("products?filter[category]=" + this.category.slug).then( (data) => {
+      console.log(JSON.parse(data.body));
+      this.products = JSON.parse(data.body).products;
+    }, (err) => {
+      console.log(err)
+    })
+*/
     this.loadMoreProducts(null);
 
     this.WooCommerce.getAsync("products").then( (data) => {

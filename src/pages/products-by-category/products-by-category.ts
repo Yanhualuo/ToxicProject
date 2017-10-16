@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import {ProductDetailsPage} from '../product-details/product-details';
 //import {MenuSubPage} from '../menu-sub/menu-sub';
 import * as WC from 'woocommerce-api';
-
+import {MenuPage} from '../menu/menu';
 
 @Component({
   selector: 'page-products-by-category',
@@ -16,7 +16,7 @@ export class ProductsByCategoryPage {
   page: number;
   category: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
 
     this.page = 1;
     this.category = this.navParams.get("category");
@@ -59,5 +59,10 @@ openProductPage(product){
   
     this.navCtrl.push(ProductDetailsPage,{"product": product});
   }
+
+openMenu(){
+  this.modalCtrl.create(MenuPage).present();
+}
+
 
 }

@@ -41,14 +41,14 @@ export class MenuPage {
       for (let i = 0; i < temp.length; i++){
         if (temp[i].parent == 0){
 
-          if (temp[i].slug == "menu"){
+          if (temp[i].slug == "sandwich"){
             temp[i].icon = "pizza";
           }
-          if (temp[i].slug == "gift"){
+          if (temp[i].slug == "sides"){
             temp[i].icon = "shirt";
           }
 
-          if (temp[i].slug == "signup"){
+          if (temp[i].slug == "wings"){
             temp[i].icon = "leaf";
           }
 
@@ -104,6 +104,7 @@ ionViewDidEnter() {
 
   openCategoryPage(category){
 
+   // this.modalCtrl.create(ProductsByCategoryPage,{"category": category}).present();
     this.navCtrl.push(ProductsByCategoryPage, { "category": category});
   }
 
