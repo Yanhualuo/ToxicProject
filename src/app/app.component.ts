@@ -16,7 +16,7 @@ import {CartPage} from '../pages/cart/cart';
 //import {PaymentPage} from '../pages/payment/payment';
 //import {PersonalInfoPage} from '../pages/personal-info/personal-info';
 //import {EmptyCartPage} from '../pages/empty-cart/empty-cart';
-import * as WC from 'woocommerce-api';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -24,14 +24,12 @@ import * as WC from 'woocommerce-api';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  WooCommerce: any;
+
   rootPage: any = HomePage;//EmptyCartPage;//LoginPage;
 
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public oneSignal: OneSignal) {
     this.initializeApp();
-
-
 
   }
 
@@ -57,21 +55,7 @@ export class MyApp {
 
 
     });
-/*
-    this.WooCommerce = WC({
-      url: "http://thetoxicwings.com",
-      consumerKey: "ck_4f3229f128bcf1e13e1103680750ee5f57386339",
-      consumerSecret: "cs_ea9582df02a8e605acdaf5fea72191d1aa6884dd"
-    });
 
-    this.WooCommerce.getAsync("products/categories").then( (data) => {
-      console.log(JSON.parse(data.body).product_categories);
-
-      let temp: any[] = JSON.parse(data.body).product_categories;
-    }, (err) => {
-      console.log(err)
-    });
-*/
   }
 
 }

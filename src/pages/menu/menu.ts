@@ -36,12 +36,12 @@ export class MenuPage {
       this.WooCommerce.getAsync("products/categories").then( (data) => {
         this.ngZone.run( ()=>{ 
       console.log(JSON.parse(data.body).product_categories);
-    })
+   
       let temp: any[] = JSON.parse(data.body).product_categories;
 
       for (let i = 0; i < temp.length; i++){
         if (temp[i].parent == 0){
-
+/*
           if (temp[i].slug == "sandwich"){
             temp[i].icon = "pizza";
           }
@@ -52,11 +52,11 @@ export class MenuPage {
           if (temp[i].slug == "wings"){
             temp[i].icon = "leaf";
           }
-
+*/
           this.categories.push(temp[i]);
         }
       }
-
+    })
     }, (err) => {
       console.log(err)
     });

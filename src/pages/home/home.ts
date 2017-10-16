@@ -49,14 +49,7 @@ export class HomePage {
     }, (err) => {
       console.log(err)
     });
-/*
-    this.WooCommerce.getAsync("products?filter[category]=" + this.category.slug).then( (data) => {
-      console.log(JSON.parse(data.body));
-      this.products = JSON.parse(data.body).products;
-    }, (err) => {
-      console.log(err)
-    })
-*/
+
     this.loadMoreProducts(null);
 
     this.WooCommerce.getAsync("products").then( (data) => {
