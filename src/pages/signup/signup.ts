@@ -74,7 +74,51 @@ export class SignupPage {
   }
 
   signup(){
+    if(this.verifyInput() && this.verifyPassword()){
+      console.log("execute login");
+      this.signupCallback();
+    }
+      
+  }
 
+    verifyInput(){
+      if (this.newUser.first_name == null || this.newUser.last_name == null || this.newUser.email == null ||
+      this.newUser.username == null || this.newUser.password == null){
+        console.log("null");
+        this.popUp("Missing Info", "Please fill all the missing fields...");
+        return false;
+      }else{
+        return true;
+      }
+    }
+    verifyPassword(){
+      if (this.newUser.password.length < 6){
+        this.popUp("Password Invalid", "Password has to be more than 6 characters");
+        return false;
+      }else if(this.newUser.password != this.newUser.confirm_password){
+        this.popUp("Password Invalid", "Confirm password doesn't match password");
+        console.log("not equal")
+        return false;
+      }else{
+        console.log("equal");
+        return true;
+      }
+    }
+
+    //FIXME: uncomment below for release version
+    popUp(title, message){
+      /*
+      this.alertCtrl.create({
+        title: title,
+        message: message,
+      }).present();
+      */
+    }
+
+
+
+
+    signupCallback(){
       let customerData = {
         customer : {}
       }
@@ -124,7 +168,6 @@ export class SignupPage {
         }
 
       })
-
     }
 
 }
