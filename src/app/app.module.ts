@@ -25,6 +25,7 @@ import {Geolocation} from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
 import {OneSignal} from '@ionic-native/onesignal';
 import {ActionSheet} from '@ionic-native/action-sheet';
+import { SMS } from '@ionic-native/sms';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import {ActionSheet} from '@ionic-native/action-sheet';
     Geolocation,
     OneSignal,
     ActionSheet,
+    SMS,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

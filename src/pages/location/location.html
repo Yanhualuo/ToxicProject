@@ -8,7 +8,7 @@
 </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="bgColor">
 
 <div #map id="map"></div> 
 
@@ -55,14 +55,7 @@
 
 <ion-footer>
 
-     <ion-card >
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <button ion-button class="paymentButton" (click)="payment()"><p class="payment-button-p"><ion-icon name="cash">  Next: Payment  <ion-icon name="card"></ion-icon></ion-icon></p> </button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card>
- 
+
+ <button ion-button class="paymentButton" (click)="payment()"><p class="payment-button-p"><ion-icon name="cash">  Next: Payment  <ion-icon name="card"></ion-icon></ion-icon></p> </button>
+
  </ion-footer>

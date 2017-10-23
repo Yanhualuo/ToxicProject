@@ -2,9 +2,10 @@
 <ion-header>
   
   <ion-navbar>
+    <!--
     <div class="logoimage">
     <img src= "./assets/images/color.png"  /></div>
-   <!-- <ion-title class="titleText">WELCOME TO TOXIC</ion-title> -->
+   <ion-title class="titleText">WELCOME TO TOXIC</ion-title> -->
   </ion-navbar>
 
 </ion-header>
@@ -106,7 +107,7 @@
                 </ion-col>
 
                 <ion-col col-4 *ngIf="loggedIn">
-                  <button ion-button class="button_transparent" (click) = "openPage('logout')">
+                  <button ion-button class="button_transparent" (click) = "openPage('personalInfo')">
                       <ion-icon name="contact"> </ion-icon>
                        <div class="button_text">
                           &nbsp; {{ (this.user.firstname == " " ? this.user.username : this.user.firstname) || ""}}</div>

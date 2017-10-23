@@ -67,7 +67,7 @@ export class ProductDetailsPage {
 
           this.toastCtrl.create({
           message:"Cart Updated",
-          duration:3000,
+          duration:1000,
           position:'top'
         }).present();
       })

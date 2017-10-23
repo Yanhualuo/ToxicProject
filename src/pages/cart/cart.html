@@ -61,7 +61,7 @@
           </ion-col>
 
           <ion-col col-3 style="text-align: right">
-           $ <b> {{total}} </b>
+           $ <b> {{total.toFixed(2)}} </b>
           </ion-col>
 
         </ion-row>
@@ -73,7 +73,9 @@
 </ion-content>
 
 <ion-footer class="middle-card">
+
   <ion-card >
+    <div class="middle-card">
    <ion-grid>
        <ion-row>
          <ion-col>
@@ -81,6 +83,7 @@
          </ion-col>
         </ion-row>
         </ion-grid>
+      </div>
   </ion-card>
- 
+
 </ion-footer>

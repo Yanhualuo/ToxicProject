@@ -24,7 +24,7 @@ export class CartPage {
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public storage:Storage, public viewCtrl:ViewController) {
   
-    this.total = 0.0;
+    this.total = 0.00;
 
     this.storage.ready().then( ()=>{
 
@@ -41,6 +41,7 @@ export class CartPage {
 
           this.cartItems.forEach((item, index) => {
             this.total = this.total + (item.product.price * item.qty)
+
           })
         }
 
@@ -68,6 +69,7 @@ export class CartPage {
     if (this.cartItems.length == 0){
       this.showEmptyCartMessage = true;
     }
+
   }
 
   closeModal(){

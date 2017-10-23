@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // All comment out import are just for testing purpose!
 
 import { MenuPage } from '../pages/menu/menu';
-//import { SignupPage } from '../pages/signup/signup';
+import { SignupPage } from '../pages/signup/signup';
 //import { LoginPage} from '../pages/login/login';
 import { HomePage} from '../pages/home/home';
 import { OneSignal } from '@ionic-native/onesignal';
@@ -25,7 +25,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
 
-  rootPage: any = HomePage;//EmptyCartPage;//LoginPage;
+  rootPage: any = HomePage;
 
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public oneSignal: OneSignal) {

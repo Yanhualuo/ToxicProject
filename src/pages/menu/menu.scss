@@ -19,7 +19,9 @@ page-menu {
         opacity: 0.8;
         border-radius: 3px;
         color:black;
+        outline: none;
         font-weight: bold;
+        border: 2px solid white;
     }
     .button:active{
         background-color: rgba(133,24,20, 0.5);

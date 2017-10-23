@@ -2,6 +2,7 @@
 <ion-header>
 
   <ion-navbar>
+      <button ion-button class="custom-icon" (click) = "openPage('home')"><ion-icon class="custom-icon-home" name="home"></ion-icon></button>
     <ion-title>Personal Info</ion-title>
   </ion-navbar>
 
@@ -36,5 +37,5 @@
 </ion-content>
 
 <ion-footer>
-    <button ion-button block color="danger" (click)="location()">Next: Pick-up Location</button>
+    <button ion-button block color="danger" (click)="logout()">Logout</button>
   </ion-footer>

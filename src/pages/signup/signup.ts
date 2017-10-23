@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import {  NavController, ModalController, NavParams, ToastController, AlertController } from 'ionic-angular';
+
+import {HomePage} from '../home/home';
+import {LoginPage} from '../login/login';
 import * as WC from 'woocommerce-api';
 
 @Component({
@@ -11,7 +14,8 @@ export class SignupPage {
   newUser: any = {};
   WooCommerce: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, 
+    public alertCtrl: AlertController,public modalCtrl: ModalController) {
 
     this.newUser.billing_address = {};
 
@@ -41,12 +45,12 @@ export class SignupPage {
 
         if(res.errors){
           validEmail = true;
-
+/*
           this.toastCtrl.create({
             message: "Congratulations. Email is good to go.",
             duration: 3000
           }).present();
-
+*/
         } else {
           validEmail = false;
 
@@ -107,12 +111,12 @@ export class SignupPage {
 
     //FIXME: uncomment below for release version
     popUp(title, message){
-      /*
+      
       this.alertCtrl.create({
         title: title,
         message: message,
       }).present();
-      */
+    
     }
 
 
@@ -155,9 +159,13 @@ export class SignupPage {
             message: "Your account has been created successfully! Please login to proceed.",
             buttons: [{
               text: "Login",
-              handler: ()=> {
-                //TODO
-              }
+              handler: () => {
+                if(this.navParams.get("next")){
+                this.modalCtrl.create(HomePage).present();
+                } else {
+                  this.modalCtrl.create(LoginPage).present();
+                   }             
+                }
             }]
           }).present();
         } else if(response.errors){
@@ -169,5 +177,12 @@ export class SignupPage {
 
       })
     }
+    
+    openPage(pageName){
+      if (pageName == 'home'){
+        this.modalCtrl.create(HomePage).present();
+      }
+    }
+
 
 }

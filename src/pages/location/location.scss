@@ -14,7 +14,7 @@ page-location {
 
       .custom-icon-home{
         font-size: 52px;
-        color: #851814;
+        color: white;
         background-color: transparent;
         background: transparent;
     }
@@ -36,7 +36,6 @@ page-location {
     }
 
     .paymentButton{
-        display: inline-block;
         background-color: #851814;
         background-repeat: no-repeat;
         border: none;
@@ -44,7 +43,9 @@ page-location {
         overflow: hidden;
         outline: none;
         width: 100%;
-        padding: 10px 10px 10px 10px;
+        transition: all 0.3s ease-out;
+        border-radius: 3px;
+       // height: 100%;
     }
     p.payment-button-p{
         font-size: 20px;
@@ -59,5 +60,8 @@ page-location {
     
     .paymentButton:focus{
         background-color:rgba(133,24,20, 0.5);
+    }
+    .bgColor{
+       background-color:  #F8F7F7;
     }
 }

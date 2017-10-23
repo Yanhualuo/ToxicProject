@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController} from 'ionic-angular';
+import { NavController, NavParams, AlertController,ModalController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import {LocationPage} from '../location/location';
+import {HomePage} from '../home/home';
 
 import * as WC from 'woocommerce-api';
 
@@ -16,9 +17,11 @@ export class PersonalInfoPage {
   newOrder: any;
   userInfo: any;
   loggedIn: boolean;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController) {
+  user: any;
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage, public alertCtrl: AlertController) {
     this.newOrder = {};
+    this.user = [];
 
     this.WooCommerce = WC({
       url: "http://thetoxicwings.com",
@@ -55,9 +58,19 @@ export class PersonalInfoPage {
   }
 
   
-  location(){
-    this.navCtrl.push(LocationPage);
+  logout(){
+    this.storage.remove("userLoginInfo").then(() => {
+      this.user = {};
+      this.loggedIn = false;
+    })
+     this.modalCtrl.create(HomePage).present();
   }
+
+  openPage(pageName){
+    if (pageName == "home"){
+        this.modalCtrl.create(HomePage).present();
+    }
+}
   
 
 }

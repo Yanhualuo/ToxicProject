@@ -1,3 +1,54 @@
 page-signup {
+    .signUpButton{
+        background-color: #851814;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        width: 100%;
+    }
+    .signUpButton:active{
+        background-color:rgba(133,24,20, 0.5);
+    }
+    .signUpButton:focus{
+        background-color:rgba(133,24,20, 0.5);
+    }
+    .signUpButton_p{
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
 
+    .custom-icon-home{
+        font-size: 52px;
+        color: white;
+        background-color: transparent;
+        background: transparent;
+    }
+    .custom-icon{
+        background-color: transparent;
+      //  background: transparent;
+    }
+
+    .custom-icon:active{
+        background-color:rgba(133,24,20, 0.5);
+    }
+
+    .custom-icon:focus{
+        background-color:rgba(133,24,20, 0.5);
+    }
+
+    .bgColor{
+        background-color:  #F8F7F7;
+     }
+
+     p.banner {
+        color:black;
+        font-size: 17px;
+        font-weight: bold;
+       // margin: 3% 8% % 5%;
+        font-family: "Arial", Helvetica, sans-serif;
+     }
 }

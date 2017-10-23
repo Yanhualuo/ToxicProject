@@ -6,6 +6,7 @@ import {EmptyCartPage} from '../empty-cart/empty-cart';
 import {MenuPage} from '../menu/menu';
 import {LoginPage} from '../login/login';
 import {LocationPage} from '../location/location';
+import {PersonalInfoPage} from '../personal-info/personal-info';
 //import {ProductsByCategoryPage} from '../products-by-category/products-by-category';
 import { Storage } from '@ionic/storage';
 
@@ -25,10 +26,13 @@ export class HomePage {
   user: any;
   category: any;
   categories: any[];
+  
 
   @ViewChild('productSlides') productSlides: Slides;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage, public navParams: NavParams) {
+
+  
 
     this.page = 2;
     this.categories = [];
@@ -137,6 +141,10 @@ export class HomePage {
     if (pageName == 'location') {
       this.modalCtrl.create(LocationPage).present();
       
+    }
+
+    if (pageName == 'personalInfo'){
+      this.modalCtrl.create(PersonalInfoPage).present();
     }
 
 

@@ -2,24 +2,60 @@ page-login {
 
     .custom-icon-home{
         font-size: 52px;
-        color: #851814;
+        color: white;
         background-color: transparent;
         background: transparent;
     }
-    button.custom-icon{
+
+    .custom-icon-home:focus{
+        background-color: darkRed;
+    }
+    .custom-icon-home:active{
+        background-color: darkred;
+    }
+
+    .custom-icon{
         background-color: transparent;
       //  background: transparent;
     }
 
-    button.custom-icon-home:focus{
-        background-color: darkRed;
-    }
-    button.custom-icon:active {
+    .custom-icon:active {
         background-color: darkRed;
     }
 
-    button.custom-icon:focus {
+    .custom-icon:focus {
         background-color:rgba(133,24,20, 0.5);
       //  opacity: 0.5;
+    }
+
+
+    .loginButton{
+        background-color: darkred;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        width: 100%;
+
+    }
+
+    .loginButton:active {
+        background-color:rgba(133,24,20, 0.5);
+    }
+
+    .loginButton:focus{
+        background-color:rgba(133,24,20, 0.5);
+    }
+
+    .loginButton_p{
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    .bgColor{
+        background-color: #F8F7F7;
     }
 }

@@ -9,12 +9,13 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+  
   <ion-card style="margin: 0px; border: none; width: 100%;">
     <img src="./assets/images/logo.jpg" style = "width:70%; margin: auto; padding:20px;" />
   </ion-card>
 
-  <ion-list>
+  <ion-list >
     <ion-item>
       <ion-label floating>Username</ion-label>
       <ion-input type="text" [(ngModel)]="username"></ion-input>
@@ -26,6 +27,9 @@
     </ion-item>
   </ion-list>
 
-  <button ion-button block color = "danger" (click)="openPage('logIn')">Login</button>
+  
+  <button ion-button class="loginButton" (click) = "openPage('logIn')"><p class="loginButton_p"><ion-icon name="person"> Login</ion-icon></p></button>
   <button ion-button clear block color = "danger" (click) = "openPage('signUp')">No Account? Sign Up Here</button>
+
+  
 </ion-content>
