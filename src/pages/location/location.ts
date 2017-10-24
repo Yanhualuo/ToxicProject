@@ -231,8 +231,8 @@ selectTime(id){
                 
                 //button Index是从1开始的，原因不详@_@
                 this.alertCtrl.create({
-                    title: "Order Placed Successfully",
-                    message: "aa" + buttonIndex,
+                    title: "IndexPicked",
+                    message: "Index: " + buttonIndex,
                   }).present();
                 this.timeIndex = buttonIndex-1;
                 this.pickupTime = buttonLabels[buttonIndex-1];
@@ -281,7 +281,7 @@ getTimes(number){
     if(parseInt(data.time1) > 0){
         this.alertCtrl.create({
             title: "pushing 11:00-12:00",
-            message: "count: " + data.time1,
+            message: "count left: " + data.time1,
           }).present();
         result.push("11:00-12:00");
         this.orderCountList.push(+data.time1);
