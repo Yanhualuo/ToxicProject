@@ -74,7 +74,7 @@ export class PaymentPage {
 
   placeOrder() {
 
-    //update times
+    //update times when placeOrer is true
     this.updateSchedudule(this.pickupLocation, this.pickupTime, this.pickupCount);
 
     let orderItems: any[] = [];

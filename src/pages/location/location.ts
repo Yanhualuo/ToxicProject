@@ -279,6 +279,10 @@ getTimes(number){
         var data = this.response[1];
     }
     if(parseInt(data.time1) > 0){
+        this.alertCtrl.create({
+            title: "pushing 11:00-12:00",
+            message: "count: " + data.time1,
+          }).present();
         result.push("11:00-12:00");
         this.orderCountList.push(+data.time1);
     }
