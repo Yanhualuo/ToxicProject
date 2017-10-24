@@ -20,6 +20,10 @@ export class PaymentPage {
   paymentMethod: any;
   billing_shipping_same: boolean;
   userInfo: any;
+
+  pickupLocation:any;
+  pickupTime:any;
+  pickupCount:any;
   
   //used for reward program
   rewardPoint: any;
@@ -60,11 +64,18 @@ export class PaymentPage {
 
 
     //test usage
-    this.getPoint("aaa@gmail.com");
-    this.setPoint("aa@gmail.com", 10);
+    //this.getPoint("aaa@gmail.com");
+    //this.setPoint("aa@gmail.com", 10);
+    this.getLocationAndTime();
+    console.log(this.pickupLocation);
+    console.log(this.pickupTime);
+    
   }
 
   placeOrder() {
+
+    //update times
+    this.updateSchedudule(this.pickupLocation, this.pickupTime, this.pickupCount);
 
     let orderItems: any[] = [];
     let data: any = {};
@@ -193,6 +204,8 @@ export class PaymentPage {
 
     }
 
+    
+
   }
 
   //get reward point from database.
@@ -233,6 +246,41 @@ export class PaymentPage {
           */
         );
           
+  }
+
+  getLocationAndTime(){
+    this.storage.get("location").then((val)=>{
+      console.log(val);
+      this.pickupLocation=val;
+    });
+    this.storage.get("time").then((val)=>{
+      console.log(val);
+      this.pickupTime=val;
+    })
+    this.storage.get("count").then((val)=>{
+      this.pickupCount=val;
+    });
+  }
+  updateSchedudule(location, time, count){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let urlSearchParams = new URLSearchParams();
+    var sql = "update times set " + time + " = " + count + " where  storename = '" + location + "'";
+    urlSearchParams.append("sql", sql);
+    console.log(sql);
+    //urlSearchParams.append("storename", location);
+    //urlSearchParams.append("columnname", time);
+    //urlSearchParams.append("count", count);
+    this.alertCtrl.create({
+      title: "sql",
+      message: sql,
+      
+    }).present();
+    let body = urlSearchParams.toString();
+    this.http.post('http://thetoxicwings.com/setTimes.php', body, {headers : headers})
+        .subscribe(
+          
+        );
   }
 
     

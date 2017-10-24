@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController,ModalController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
+import { Http, Response, URLSearchParams, Headers } from '@angular/http';
 import {LocationPage} from '../location/location';
 import {HomePage} from '../home/home';
 
@@ -18,8 +18,9 @@ export class PersonalInfoPage {
   userInfo: any;
   loggedIn: boolean;
   user: any;
+  rewardPoint: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage, public alertCtrl: AlertController) {
+  constructor(private http: Http, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage, public alertCtrl: AlertController) {
     this.newOrder = {};
     this.user = [];
 
@@ -37,7 +38,7 @@ export class PersonalInfoPage {
          this.loggedIn = true;
 
          let email = userLoginInfo.user.email;
-         
+         this.getPoint(email);
           this.WooCommerce.getAsync("customers/email/" + email).then((data) => {
          
           this.newOrder = JSON.parse(data.body).customer;
@@ -49,8 +50,6 @@ export class PersonalInfoPage {
          this.loggedIn = false;
       }
     });
-
-
   }
 
   ionViewDidLoad() {
@@ -70,7 +69,25 @@ export class PersonalInfoPage {
     if (pageName == "home"){
         this.modalCtrl.create(HomePage).present();
     }
-}
+  }
+
+  //get reward point from database.
+  getPoint(email){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let urlSearchParams = new URLSearchParams();
+    urlSearchParams.append("user_email", email);
+    let body = urlSearchParams.toString();
+    let body1 = {user_name: 'aaa@gmail.com'};
+    this.http.post('http://thetoxicwings.com/getPoints.php', body, {headers : headers})
+        .subscribe(
+          (res) =>{
+            let temp = res.json()[0].user_status;
+            //convert string to number
+            this.rewardPoint = +temp;
+          }
+        );
+  }
   
 
 }

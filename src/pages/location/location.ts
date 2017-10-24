@@ -7,6 +7,7 @@ import {LoadingController} from 'ionic-angular';
 import {PaymentPage} from '../payment/payment';
 import {HomePage} from '../home/home';
 import {FormsModule} from '@angular/forms';
+import { Storage } from '@ionic/storage';
 declare var google;
 
 @Component({
@@ -22,11 +23,19 @@ export class LocationPage {
 
   places : Array<any>;
   place: any;
+
+  //location and time variables
   response: any;
   pickupTime = null;
   pickupLocation = null;
+  orderCountList:any;
+  orderCount=null;
+  locationIndex:any;
+  timeIndex:any;
+  
+  //end location and time variables
 
-  constructor(public alertCtrl: AlertController, public modalCtrl: ModalController, public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet, public loadingCtrl: LoadingController) {
+  constructor(public storage:Storage, public alertCtrl: AlertController, public modalCtrl: ModalController, public toastCtrl: ToastController, private http: Http, public navCtrl: NavController, public navParams: NavParams, private geolocation : Geolocation, private actionSheet: ActionSheet, public loadingCtrl: LoadingController) {
       this.getSchedule();
 
   }
@@ -151,19 +160,20 @@ createMarker(place)
   
   
 payment(){
-    this.navCtrl.push(PaymentPage);
+    //this.setStoreLocationAndTime();
+    //this.navCtrl.push(PaymentPage);
     //comment above and uncomment below for release version.
     
-    /* 
+    
     if (this.pickupTime == null || this.pickupLocation == null){
         this.alertCtrl.create({
             title: "Missing Info",
             message: "Please Choose Pickup Location and Time",
           }).present();
     }else{
+        this.setStoreLocationAndTime();
         this.navCtrl.push(PaymentPage);
     }
-    */
     
 }
 openPage(pageName){
@@ -172,6 +182,22 @@ openPage(pageName){
     }
 }
 
+//below is used for location and time picker/choose/storage
+setStoreLocationAndTime(){
+    var labelList = ["time1", "time2", "time3", "time4", "time5"];
+    var buttonLabels = ['11:00-12:00', '12:00-1:00', '1:00-2:00','2:00-3:00','3:00-4:00'];
+    this.storage.set("location", this.pickupLocation);
+    var timeColumn;
+    for (var i = 0; i< labelList.length; i++){
+        if (this.pickupTime == buttonLabels[i]){
+            timeColumn = labelList[i];
+        }
+    }
+    this.storage.set("time", timeColumn);
+    this.storage.set("count",this.orderCountList[this.timeIndex]-1);
+}
+
+
 selectTime(id){
     this.pickupLocation = id;
     //console.log("before");
@@ -179,7 +205,7 @@ selectTime(id){
     //console.log("id");
     //console.log(id=="943 River Road, Eugene");
     //console.log(id=="264 Valley River Center, Eugene");
-    var buttonLabels;
+    var buttonLabels = [];
 
     if(id=="264 Valley River Center, Eugene"){
         buttonLabels = this.getTimes(0);
@@ -204,6 +230,11 @@ selectTime(id){
                 //console.log('Button pressed: ' + buttonIndex + 'at location:' + id);
                 
                 //button Index是从1开始的，原因不详@_@
+                this.alertCtrl.create({
+                    title: "Order Placed Successfully",
+                    message: "aa" + buttonIndex,
+                  }).present();
+                this.timeIndex = buttonIndex-1;
                 this.pickupTime = buttonLabels[buttonIndex-1];
             });
 
@@ -238,50 +269,34 @@ getSchedule(){
 //根据数据生成buttonlabel
 //时间表过多时可以使用两个array保存data.time和时间用以简化code
 getTimes(number){
-    var buttonLabels = ['11:00-12:00\naaa', '12:00-1:00', '1:00-2:00','2:00-3:00','3:00-4:00']
+    //var buttonLabels = ['11:00-12:00', '12:00-1:00', '1:00-2:00','2:00-3:00','3:00-4:00'];
+    this.orderCountList = [];
     var result = [];
+    var data:any;
     if (number == 0){
-        //console.log("printing schedule");
-        //console.log(this.getSchedule());
-        //this.getSchedule();
-
-        //console.log("global： " + this.response);
-
-        //var temp = this.getSchedule();
-        //console.log("print temp" + temp);
         var data:any = this.response[0];
-        if(parseInt(data.time1) > 0){
-            result.push("11:00-12:00");
-        }
-        if(parseInt(data.time2) > 0){
-            result.push("12:00-1:00");
-        }
-        if(parseInt(data.time3) > 0){
-            result.push("1:00-2:00");
-        }
-        if(parseInt(data.time4) > 0){
-            result.push("2:00-3:00");
-        }
-        if(parseInt(data.time5) > 0){
-            result.push("3:00-4:00");
-        }
     }else if (number == 1){
         var data = this.response[1];
-        if(parseInt(data.time1) > 0){
-            result.push("11:00-12:00");
-        }
-        if(parseInt(data.time2) > 0){
-            result.push("12:00-1:00");
-        }
-        if(parseInt(data.time3) > 0){
-            result.push("1:00-2:00");
-        }
-        if(parseInt(data.time4) > 0){
-            result.push("2:00-3:00");
-        }
-        if(parseInt(data.time5) > 0){
-            result.push("3:00-4:00");
-        }
+    }
+    if(parseInt(data.time1) > 0){
+        result.push("11:00-12:00");
+        this.orderCountList.push(+data.time1);
+    }
+    if(parseInt(data.time2) > 0){
+        result.push("12:00-1:00");
+        this.orderCountList.push(+data.time2);
+    }
+    if(parseInt(data.time3) > 0){
+        result.push("1:00-2:00");
+        this.orderCountList.push(+data.time3);
+    }
+    if(parseInt(data.time4) > 0){
+        result.push("2:00-3:00");
+        this.orderCountList.push(+data.time4);
+    }
+    if(parseInt(data.time5) > 0){
+        result.push("3:00-4:00");
+        this.orderCountList.push(+data.time5);
     }
     console.log(result);
     return result;
