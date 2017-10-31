@@ -10,6 +10,7 @@ import {CheckoutNoLoginPage} from '../checkout-no-login/checkout-no-login';
 import {PersonalInfoPage} from '../personal-info/personal-info';
 import {MenuPage} from '../menu/menu';
 import {HomePage} from '../home/home';
+import {LocationPage} from '../location/location';
 
 @Component({
   selector: 'page-cart',
@@ -77,21 +78,7 @@ export class CartPage {
   }
 
   openPage(pageName){
-/*
-    if (pageName == "checkout"){
-    this.storage.get("userLoginInfo").then( (data) => {
-      if(data != null){
-        this.navCtrl.push(PersonalInfoPage);
-      } else {
-        this.navCtrl.push(CheckoutNoLoginPage)
-      }
-    })
 
-
- //   this.navCtrl.push(CheckoutPage);
-  
-  }
-*/
     if (pageName == "menu"){
       this.modalCtrl.create(MenuPage).present();
     }
@@ -103,7 +90,7 @@ export class CartPage {
     if (pageName == "checkout"){
       this.storage.get("userLoginInfo").then ((data) =>{
         if (data != null) {
-          this.navCtrl.push(CheckoutPage);
+          this.navCtrl.push(LocationPage);
         }
         else{
           this.navCtrl.push(CheckoutNoLoginPage);

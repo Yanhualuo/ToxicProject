@@ -170,7 +170,8 @@ export class CheckoutPage {
 
           this.alertCtrl.create({
             title: "Order Placed Successfully",
-            message: "Your order has been placed successfully. Your order number is " + response.order_number,
+            message: "Your order has been placed successfully. Your order number is " 
+            + response.order_number + response + " " + data.body,
             buttons: [{
               text: "OK",
               handler: () => {

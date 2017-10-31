@@ -12,6 +12,7 @@ import { Toast, ToastController, ModalController} from 'ionic-angular';
 export class ProductDetailsPage {
 
   product: any;
+  wingFavor: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public toastCtrl: ToastController, public modalCtrl:ModalController) {
     

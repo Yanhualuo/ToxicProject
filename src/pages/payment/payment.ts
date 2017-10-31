@@ -34,7 +34,8 @@ export class PaymentPage {
     this.newOrder = {};
     this.newOrder.billing_address = {};
     this.newOrder.shipping_address = {};
-    this.billing_shipping_same = false;
+   
+   // this.billing_shipping_same = false;
 
     this.paymentMethods = [
      // { method_id: "VISA", method_title: "VISA" },
@@ -55,6 +56,8 @@ export class PaymentPage {
       let email = userLoginInfo.user.email;
 
       this.WooCommerce.getAsync("customers/email/" + email).then((data) => {
+
+      
 
         this.newOrder = JSON.parse(data.body).customer;
 
@@ -96,7 +99,12 @@ export class PaymentPage {
         paid: true
       },
 
+      shipping_address: {
+        address_1: this.pickupLocation
+      },
+    
       billing_address: this.newOrder.billing_address,
+
       customer_id: this.userInfo.id || '',
       line_items: orderItems
     };
@@ -132,6 +140,7 @@ export class PaymentPage {
               let orderData: any = {};
 
               orderData.order = data;
+              
 
               this.WooCommerce.postAsync('orders', orderData).then((data) => {
                 alert("Order placed successfully!");
@@ -180,19 +189,28 @@ export class PaymentPage {
         data.line_items = orderItems;
 
         let orderData: any = {};
-
+        
         orderData.order = data;
+
+
+      //  orderData.shipping_address = this.pickupLocation;
 
         this.WooCommerce.postAsync("orders", orderData).then((data) => {
 
           let response = (JSON.parse(data.body).order);
 
+          //test use, setting 10 points
+          this.setPoint(this.userInfo.email,10);
+
           this.alertCtrl.create({
             title: "Order Placed Successfully",
-            message: "Your order has been placed successfully. Your order number is " + response.order_number,
+            message: "Your order has been placed successfully. Your order number is " 
+            + response.order_number + this.pickupLocation + " " +  response + " " + data.body,
             buttons: [{
               text: "OK",
               handler: () => {
+
+                
                 this.navCtrl.setRoot('HomePage');
               }
             }]
@@ -261,6 +279,7 @@ export class PaymentPage {
       this.pickupCount=val;
     });
   }
+
   updateSchedudule(location, time, count){
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');

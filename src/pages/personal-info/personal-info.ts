@@ -38,7 +38,9 @@ export class PersonalInfoPage {
          this.loggedIn = true;
 
          let email = userLoginInfo.user.email;
-         this.getPoint(email);
+
+         this.rewardPoint = this.getPoint(email);
+
           this.WooCommerce.getAsync("customers/email/" + email).then((data) => {
          
           this.newOrder = JSON.parse(data.body).customer;
@@ -50,6 +52,8 @@ export class PersonalInfoPage {
          this.loggedIn = false;
       }
     });
+
+  
   }
 
   ionViewDidLoad() {

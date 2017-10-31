@@ -56,14 +56,16 @@ export class LoginPage {
           buttons: [{
             text: "OK",
             handler: () => {
-
-              this.events.publish("updateMenu");
-
+              this.modalCtrl.create(HomePage).present();
+            //  this.events.publish("updateMenu");
+/*
               if(this.navParams.get("next")){
-                this.modalCtrl.create(SignupPage).present();
-              } else {
+
                 this.modalCtrl.create(HomePage).present();
-              }             
+              } else {
+                this.modalCtrl.create(SignupPage).present();
+              }   
+              */          
             }
           }]
         }).present();

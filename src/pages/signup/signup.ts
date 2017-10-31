@@ -56,7 +56,8 @@ export class SignupPage {
 
           this.toastCtrl.create({
             message: "Email already registered. Please check.",
-            showCloseButton: true
+            showCloseButton: true,
+            position:'top'
           }).present();
         }
 
@@ -70,7 +71,8 @@ export class SignupPage {
       validEmail = false;
       this.toastCtrl.create({
         message: "Invalid Email. Please check.",
-        showCloseButton: true
+        showCloseButton: true,
+        position:'top'
       }).present();
       console.log(validEmail);
     }

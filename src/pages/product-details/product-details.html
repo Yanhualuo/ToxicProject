@@ -54,11 +54,14 @@
           </ion-col>
 
           <ion-col col-8>
-            <span *ngFor="let option of att.options"> {{option}}
-              </span>
+            <ion-select [(ngModel)]="wingFavor" >
+            <ion-option *ngFor="let option of att.options" value="{{option}}">  {{option}} </ion-option>
+            </ion-select>
+        
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>
+
