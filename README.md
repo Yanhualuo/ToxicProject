@@ -1,26 +1,30 @@
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
-## How to use this template
+## template from
+ [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+# Toixc 
+---------------------------------------------
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+# Introduction
+-------------------------------
+This project is a fully functional private mobile order app (beside on the menu page). 
 
-### With the Ionic CLI:
+# Requirements
+-----------------------------------
+This project requires the following setup:
+* install ionic and cordova
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+# Installation/How it works
+-----------------------------------------------------------
+1) install ionic 
+  $ sudo npm install -g ionic 
+2) install cordova 
+  $ sudo nmp install -g cordova 
+3) add platform
+  $ ionic cordova platform add ios(or android)
+  $ ionic cordova build ios
+  $ ionic cordova run ios
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
-```
 
-Then, to run it, cd into `mySideMenu` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
 
