@@ -1,9 +1,9 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
 ## template from
  [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
 
-# Toixc 
+# Toixc website 
+https://thetoxicwings.com/
 ---------------------------------------------
 
 # Introduction
